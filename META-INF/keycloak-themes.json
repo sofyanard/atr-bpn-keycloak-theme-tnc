@@ -1,0 +1,6 @@
+{
+    "themes": [{
+        "name" : "keycloak_atr_theme_tnc",
+        "types": [ "login"]
+    }]
+}
