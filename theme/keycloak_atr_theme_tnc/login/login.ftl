@@ -217,8 +217,8 @@
                 $('#error-div').addClass("alert alert-info");
                 $('#error-div').show();
 
-                $('#tncMessageDiv').html(response.tnc.message);
-                $('#tncContentDiv').html(response.tnc.content);
+                $('#tncMessageDiv').html(response.tnc?.message ?? 'No response from TnC API');
+                $('#tncContentDiv').html(response.tnc?.content ?? 'No response from TnC API');
                 $('#tncUrlLink').attr('href', response.tnc.url).text(response.tnc.url);
             })
             .fail(function(jqXHR, textStatus, errorThrown) {
