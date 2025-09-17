@@ -220,6 +220,8 @@
                 $('#tncMessageDiv').html(response.tnc?.message ?? 'No response from TnC API');
                 $('#tncContentDiv').html(response.tnc?.content ?? 'No response from TnC API');
                 $('#tncUrlLink').attr('href', response.tnc.url).text(response.tnc.url);
+
+                $('#termsModal').modal('show');
             })
             .fail(function(jqXHR, textStatus, errorThrown) {
 
