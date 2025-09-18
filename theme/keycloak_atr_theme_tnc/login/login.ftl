@@ -145,7 +145,8 @@
                             <div id="tncContentDiv" name="tncContentDiv"></div>
                         </p>
                         <p>
-                            <a id="tncUrlLink" name="tncUrlLink" target="_blank"></a>
+                            <div>Versi T&C terbaru: <span id="tncVersion" name="tncVersion"></span></div>
+                            <div><a id="tncUrlLink" name="tncUrlLink" target="_blank"></a></div>
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -217,11 +218,15 @@
                 $('#error-div').addClass("alert alert-info");
                 $('#error-div').show();
 
-                $('#tncMessageDiv').html(response.tnc?.message ?? 'No response from TnC API');
-                $('#tncContentDiv').html(response.tnc?.content ?? 'No response from TnC API');
-                $('#tncUrlLink').attr('href', response.tnc.url).text(response.tnc.url);
+                $('#tncMessageDiv').html(response.tnc?.message ?? 'Error retrieving data');
+                $('#tncContentDiv').html(response.tnc?.data?.KONTEN ?? 'Error retrieving data');
+                $('#tncVersion').html(response.tnc?.data?.VERSI_TNC_TERBARU);
+                $('#tncUrlLink').attr('href', response.tnc?.data?.URL).text(response.tnc?.data?.URL);
 
-                $('#termsModal').modal('show');
+                if (response.tnc?.data?.STATUS_TNC === 0) {
+                    $('#termsModal').modal('show');
+                }
+                
             })
             .fail(function(jqXHR, textStatus, errorThrown) {
 
