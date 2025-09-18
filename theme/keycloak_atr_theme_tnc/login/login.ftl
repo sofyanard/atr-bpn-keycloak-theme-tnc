@@ -121,6 +121,8 @@
                                 <input type="submit" class="btn btn-primary w-100" id="kc-login" value="Login" disabled />
                             </div>
 
+                            <input type="hidden" id="statusTnc" name="statusTnc" value="" />
+
                         </form>
                     </div>
                 </div>
@@ -224,6 +226,8 @@
                 $('#tncUrlLink').attr('href', response.tnc?.data?.URL).text(response.tnc?.data?.URL);
 
                 if (response.tnc?.data?.STATUS_TNC === 0) {
+                    // updating hidden input for triggering tnc update for login backend
+                    $('#statusTnc').val(response.tnc?.data?.STATUS_TNC);
                     $('#termsModal').modal('show');
                 }
                 
