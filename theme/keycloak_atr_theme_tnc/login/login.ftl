@@ -223,14 +223,18 @@
                 $('#tncMessageDiv').html(response.tnc?.message ?? 'Error retrieving data');
                 $('#tncContentDiv').html(response.tnc?.data?.KONTEN ?? 'Error retrieving data');
                 $('#tncVersion').html(response.tnc?.data?.VERSI_TNC_TERBARU);
-                $('#tncUrlLink').attr('href', response.tnc?.data?.URL).text(response.tnc?.data?.URL);
+                $('#tncUrlLink').attr('href', response.tnc?.data?.URL).text('Unduh di sini');
 
                 if (response.tnc?.data?.STATUS_TNC === 0) {
                     // updating hidden input for triggering tnc update for login backend
                     $('#statusTnc').val(response.tnc?.data?.STATUS_TNC);
                     $('#termsModal').modal('show');
+                } else {
+                    $(function() {
+                        $('#termsCheck').prop('checked', true);
+                        $('#kc-login').prop('disabled', !$('#termsCheck').is(':checked'));
+                    });
                 }
-                
             })
             .fail(function(jqXHR, textStatus, errorThrown) {
 
